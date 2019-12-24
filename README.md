@@ -40,3 +40,56 @@
 | :-----| ----: | ----: 
 | 确定照片中的人并匹配用户 |  百度人脸识别API人脸对比服务|2
 | 找到在诸多照片中找到用户的脸 | 百度人脸识别API人脸搜索服务|1
+## 原型
+### 使用者交互与设计（axure产品原型）
+#### 交互及界面设计
+## API运用可行性展示：
+### 可用API
+· 人脸搜索API
+#### 使用水平
+##### 人脸搜索API使用测试
+- 接口描述：也称为1：N识别，在指定人脸集合中，找到最相似的人脸；
+- 进行人脸查找相关操作前，需要进行人脸库操作。
+##### 百度AI开放平台-人脸识别API
+- 百度人脸库架构
+```
+|- 人脸库(appid)
+   |- 用户组一（group_id）
+      |- 用户01（uid）
+         |- 人脸（faceid）
+      |- 用户02（uid）
+         |- 人脸（faceid）
+         |- 人脸（faceid）
+         ....
+       ....
+   |- 用户组二（group_id）
+   |- 用户组三（group_id）
+   ....
+```
+##### 关于人脸库的设置限制：
+- 每个开发者账号可以创建100个appid；
+- 每个appid对应一个人脸库，且不同appid之间，人脸库互不相通；
+- 每个人脸库下，可以创建多个用户组，用户组（group）数量没有限制；
+- 每个用户组（group）下，可添加无限个user_id，无限张人脸（注：为了保证查询速度，单个group中的人脸容量上限建议为80万）；
+- 每个用户（user_id）所能注册的最大人脸数量20；
+
+- 输入
+```
+# encoding:utf-8
+
+import requests
+
+'''
+人脸搜索
+'''
+
+request_url = "https://aip.baidubce.com/rest/2.0/face/v3/search"
+
+params = {"image":img2, "image_type": "BASE64","group_id_list":"group_repeat,group_233","quality_control":"LOW","liveness_control":"NORMAL"}
+access_token = '[24.da074e3129df6a4bf7ae2bad20f070c0.2592000.1579701470.282335-18089226]'
+request_url = request_url + "?access_token=" + access_token
+headers = {'content-type': 'application/json'}
+response = requests.post(request_url, data=params, headers=headers)
+if response:
+    print (response.json())
+```
