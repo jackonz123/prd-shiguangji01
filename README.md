@@ -51,7 +51,7 @@
 - 接口描述：也称为1：N识别，在指定人脸集合中，找到最相似的人脸；
 - 进行人脸查找相关操作前，需要进行人脸库操作。
 ##### 百度AI开放平台-人脸识别API
-- 百度人脸库架构
+##### 百度人脸库架构
 ```
 |- 人脸库(appid)
    |- 用户组一（group_id）
@@ -73,7 +73,7 @@
 - 每个用户组（group）下，可添加无限个user_id，无限张人脸（注：为了保证查询速度，单个group中的人脸容量上限建议为80万）；
 - 每个用户（user_id）所能注册的最大人脸数量20；
 
-- 输入
+###### 输入：
 ```
 # encoding:utf-8
 
@@ -92,4 +92,8 @@ headers = {'content-type': 'application/json'}
 response = requests.post(request_url, data=params, headers=headers)
 if response:
     print (response.json())
+```
+###### 输出：
+```
+{'error_code': 0, 'error_msg': 'SUCCESS', 'log_id': 12012575550, 'timestamp': 1577115260, 'cached': 0, 'result': {'face_token': 'a43d347463854de0a38185db6c3b845f', 'user_list': [{'group_id': 'group_repeat', 'user_id': 'jackchan', 'user_info': 'abc', 'score': 96.868911743164}]}}
 ```
