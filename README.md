@@ -97,3 +97,90 @@ if response:
 ```
 {'error_code': 0, 'error_msg': 'SUCCESS', 'log_id': 12012575550, 'timestamp': 1577115260, 'cached': 0, 'result': {'face_token': 'a43d347463854de0a38185db6c3b845f', 'user_list': [{'group_id': 'group_repeat', 'user_id': 'jackchan', 'user_info': 'abc', 'score': 96.868911743164}]}}
 ```
+##### Face++旷视AI开放平台-人脸识别API
+#####  Face++人脸库架构
+```
+|- 人脸库(faceset)
+   |- 用户组一（faceset_token）
+      |- 用户01（face_tokens）
+      |- 用户02（face_tokens）
+      ....
+   |- 用户组二（faceset_token）
+   |- 用户组三（faceset_token）
+   ....
+```
+##### 关于人脸库的设置限制：
+- 创建一个人脸的集合 FaceSet，用于存储人脸标识 face_token。一个 FaceSet 能够存储10000个 face_token。
+
+###### 输入：
+```
+# -*- coding: utf-8 -*-
+import urllib.request
+import urllib.error
+import time
+
+http_url = ' https://api-cn.faceplusplus.com/facepp/v3/search'
+key = "IpRO_fXwnvj7aVk83DWwTQpBBZ3HSoz1"
+secret = "F6MBfAY8TBAiiiszvJxA0g32ooMxq98b"
+filepath = r"C:\Users\王鹏杰\Desktop\2019~2020课程\API\2.jpg"
+
+boundary = '----------%s' % hex(int(time.time() * 1000))
+data = []
+data.append('--%s' % boundary)
+data.append('Content-Disposition: form-data; name="%s"\r\n' % 'api_key')
+data.append(key)
+data.append('--%s' % boundary)
+data.append('Content-Disposition: form-data; name="%s"\r\n' % 'api_secret')
+data.append(secret)
+data.append('--%s' % boundary)
+data.append('Content-Disposition: form-data; name="%s"\r\n' % 'faceset_token')
+data.append(faceset_token)
+data.append('--%s' % boundary)
+fr = open(filepath, 'rb')
+data.append('Content-Disposition: form-data; name="%s"; filename=" "' % 'image_file')
+data.append('Content-Type: %s\r\n' % 'application/octet-stream')
+data.append(fr.read())
+fr.close()
+data.append('--%s' % boundary)
+data.append('Content-Disposition: form-data; name="%s"\r\n' % 'return_landmark')
+data.append('1')
+data.append('--%s' % boundary)
+data.append('Content-Disposition: form-data; name="%s"\r\n' % 'return_attributes')
+data.append(
+    "gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus")
+data.append('--%s--\r\n' % boundary)
+
+for i, d in enumerate(data):
+    if isinstance(d, str):
+        data[i] = d.encode('utf-8')
+
+http_body = b'\r\n'.join(data)
+
+# build http request
+req = urllib.request.Request(url=http_url, data=http_body)
+
+# header
+req.add_header('Content-Type', 'multipart/form-data; boundary=%s' % boundary)
+
+try:
+    # post data to server
+    resp = urllib.request.urlopen(req, timeout=5)
+    # get response
+    qrcont = resp.read()
+    # if you want to load as json, you should decode first,
+    # for example: json.loads(qrount.decode('utf-8'))
+    print(qrcont.decode('utf-8'))
+except urllib.error.HTTPError as e:
+    print(e.read().decode('utf-8'))
+#  仅仅支持10000张人脸图搜索
+```
+###### 输出：
+```
+{"image_id": "0oAp+twc6E/BUVGBGX22wQ==", "faces": [{"face_rectangle": {"width": 130, "top": 99, "left": 140, "height": 130}, "face_token": "9239735ccf3bb2519fdd59c7a2e722d8"}], "time_used": 375, "thresholds": {"1e-3": 62.327, "1e-5": 73.975, "1e-4": 69.101}, "request_id": "1577167555,6d93fed6-ff77-4465-b877-5b57bb19cd1e", "results": [{"confidence": 92.464, "user_id": "", "face_token": "fb68dfa143702e180cf6cbf7ee400534"}]}
+```
+##### 百度人脸搜索API与FACE++人脸搜索API对比
+|| 人脸库 | 人脸搜索准确率 |
+|--------|:-----:|:-----:|
+| 百度| 百度的人脸库可进行80万张图片的人脸检索 | 96.868911743164 |
+| FACE++ | FACEset可进行1万张图片的人脸检索 | 92.464% |
+
