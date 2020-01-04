@@ -83,15 +83,28 @@
 - 输出：文字信息
 
 原型2.信息设计 5%
-- ![产品结构图]（https://github.com/jackonz123/prd-shiguangji01/blob/master/%E4%BA%A7%E5%93%81%E7%BB%93%E6%9E%84%E5%9B%BE.png）
+- 产品结构图
+![产品结构图.png](https://upload-images.jianshu.io/upload_images/9484392-fcf0b42e3d401a81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 产品功能结构
+![产品功能结构图.png](https://upload-images.jianshu.io/upload_images/9484392-5e42555876568488.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 产品信息架构
+![产品信息架构图.png](https://upload-images.jianshu.io/upload_images/9484392-8a49550b0650f400.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 原型3.原型文档 5%
 - [原型](http://jackonz2017.gitee.io/shiguangji-yuanxing/#g=1&p=%E9%A6%96%E9%A1%B5)
 - [原型下载](https://gitee.com/jackonz2017/shiguangji-yuanxing)
 
 原型4.口头操作说明 5%
-
-
+![1_0首页.png](https://upload-images.jianshu.io/upload_images/9484392-fd396ab2715fb292.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![2_0好友.png](https://upload-images.jianshu.io/upload_images/9484392-1e1c3fc741cb07f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3_0相册.png](https://upload-images.jianshu.io/upload_images/9484392-102ea3c1bb3e17b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3_1查看相册.png](https://upload-images.jianshu.io/upload_images/9484392-93d93865bc39e092.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3_2手动上传图片.png](https://upload-images.jianshu.io/upload_images/9484392-8a247d607fdd46f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3_3新增相册.png](https://upload-images.jianshu.io/upload_images/9484392-74e29618b7caa345.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![3_4时光机.png](https://upload-images.jianshu.io/upload_images/9484392-0eac090e575d3de6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![4_0事件.png](https://upload-images.jianshu.io/upload_images/9484392-54b61e60e4df11f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![4_1搜索.png](https://upload-images.jianshu.io/upload_images/9484392-f32a62334ed56108.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![5_0我.png](https://upload-images.jianshu.io/upload_images/9484392-51d68869a1b6d30c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## API1.使用水平 5%
 ### 可用API
@@ -237,5 +250,7 @@ except urllib.error.HTTPError as e:
 | FACE++ | FACEset可进行1万张图片的人脸检索 | 92.464% |
 
 ## API3.使用后风险报告 5%
+
+
 
 ## API4.加分项 3%
